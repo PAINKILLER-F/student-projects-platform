@@ -4,6 +4,7 @@ import com.platform.projapp.dto.request.AddOrUpdateSprintRequest;
 import com.platform.projapp.dto.response.body.ProjectPlan;
 import com.platform.projapp.dto.response.body.SprintDTO;
 import com.platform.projapp.error.NotFoundException;
+import com.platform.projapp.model.Presentation;
 import com.platform.projapp.model.Sprint;
 import com.platform.projapp.model.User;
 import com.platform.projapp.model.Workspace;
@@ -11,13 +12,12 @@ import com.platform.projapp.repository.ProjectRepository;
 import com.platform.projapp.repository.SprintsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -70,6 +70,14 @@ public class SprintsService {
 //        if (addOrUpdateSprintRequest.getNumber() != null)
 //            sprint.setOrderNumber(addOrUpdateSprintRequest.getNumber());
         //TODO: set presentation
+        if(addOrUpdateSprintRequest.getPresentation()!=null) {
+            Base64.Decoder decoder = Base64.getDecoder();
+            String pptx = String.valueOf(addOrUpdateSprintRequest.getPresentation());
+            byte[] bytes = decoder.decode(pptx);
+            Byte[] Bytes = ArrayUtils.toObject(bytes);
+            Presentation presentation = new Presentation(Bytes);
+            sprint.setPresentationId(presentation.getId());
+        }
 
         sprintsRepository.save(sprint);
     }
