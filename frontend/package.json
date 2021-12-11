@@ -17,6 +17,7 @@
     "@types/node": "^12.20.23",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "dropzone": "^6.0.0-beta.2",
     "material-table": "latest",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
@@ -55,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "@types/dropzone": "^5.7.4",
     "@types/react-router-dom": "^5.1.8"
   },
   "proxy": "http://localhost:8080"

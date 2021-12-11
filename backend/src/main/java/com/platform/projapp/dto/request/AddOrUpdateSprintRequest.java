@@ -3,7 +3,9 @@ package com.platform.projapp.dto.request;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+
 import java.time.LocalDate;
+import java.util.Base64;
 
 @Data
 public class AddOrUpdateSprintRequest {
@@ -15,5 +17,5 @@ public class AddOrUpdateSprintRequest {
     private LocalDate startDate;
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDate endDate;
-    //TODO: add presentation
+    public Base64 presentation;
 }
